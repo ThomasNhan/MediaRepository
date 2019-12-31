@@ -1,6 +1,6 @@
 # Media Library
 
-This application is in new parts.
+This application is in two parts.
 
 - client (not yet created)
 - server - This is our api using Nodejs + Express + Mongoose
