@@ -1,0 +1,14 @@
+<table>
+  <th>Author</th>
+  <th>Publisher</th>
+  <th>Media</th>
+  <th>Comment</th>
+  <ng-container *ngFor="let media of mediaList">
+    <tr>
+      <td>{{ media.author }}</td>
+      <td>{{ media.publisher }}</td>
+      <td><a href="{{ media.url }}">Title goes here</a></td>
+      <td>{{ media.comment }}</td>
+    </tr>
+  </ng-container>
+</table>
