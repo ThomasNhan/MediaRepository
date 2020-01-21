@@ -1,0 +1,35 @@
+<h1>Upload Media</h1>
+
+<form
+  [formGroup]="mediaForm"
+  (ngSubmit)="submit(mediaForm.value, mediaForm.valid)"
+>
+  <label>
+    Author:
+    <input type="text" formControlName="author" /> </label
+  ><br />
+  <label>
+    Publisher:
+    <input type="text" formControlName="publisher" /> </label
+  ><br />
+  <label>
+    Description:
+    <input
+      type="textarea"
+      rows="5"
+      cols="50"
+      formControlName="description"/></label
+  ><br />
+  <label>
+    Upload Media:
+    <input
+      #fileInput
+      type="file"
+      value="Upload Media"
+      (change)="onFileChange($event)"
+    /> </label
+  ><br />
+  <button type="submit">Submit</button>
+  <br /><br />
+  <label>{{ confirmation }}</label>
+</form>

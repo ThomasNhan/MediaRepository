@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 const mediaSchema = new mongoose.Schema({
     url: {
         type: String,
-        required: true
+        required: false
     },
     author: {
         type: String,
@@ -13,12 +13,16 @@ const mediaSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    comment: {
+    description: {
         type: String
+    },
+    fileName: {
+        type: String,
+        required: false
     },
     mediaType: {
         type: String,
-        required: true
+        required: false
     }
 });
 
