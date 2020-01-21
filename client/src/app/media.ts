@@ -1,7 +1,10 @@
 export class Media {
   id: string;
+  media: object;
   url: string;
   author: string;
   publisher: string;
-  comment: string;
+  description: string;
+  mediaType: string;
+  fileName: string;
 }

@@ -11,7 +11,14 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
   public createMedia(media: Media) {
+    console.log(media);
+
     return this.httpClient.post(`${this.apiURL}/media/`, media);
+  }
+
+  public uploadMedia(file) {
+    console.log('file', file);
+    return this.httpClient.post(`${this.apiURL}/media/upload`, file);
   }
 
   public updateMedia(media: Media) {}
