@@ -1,1 +1,179 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("./br.jpg");
+  height: 105vh;
+  background-size: cover;
+  background-position: 100%;
+  background-repeat: no-repeat;
+  font-family: monospace;
+}
+.main-nav {
+  float: right;
+  list-style: none;
+  margin-top: 30px;
+}
+.main-nav li {
+  display: inline-block;
+}
+.main-nav li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 20px;
+  font-family: "roboto", sans-serif;
+  font-size: 15px;
+}
+.main-nav li.active a {
+  border: 1px solid gold;
+}
+.main-nav li a:hover {
+  border: 1px solid maroon;
+  background-color: maroon;
+  transition: all 0.5;
+}
+.icon img {
+  height: auto;
+  width: 150px;
+  float: left;
+}
+.row {
+  max-width: 1200px;
+  margin: auto;
+}
+.psyche {
+  position: absolute;
+  width: 1200px;
+  margin-left: 0;
+  margin-top: 0;
+}
+h1 {
+  color: white;
+  text-transform: uppercase;
+  font-size: 70px;
+  text-align: center;
+  margin-top: 0;
+}
+.login-page {
+  width: 360px;
+  padding: 10% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: rgba(128, 0, 0, 0.4);
+  max-width: 360;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+}
+.form input {
+  font-family: "roboto", sans-serif;
+  outline: 1;
+  background: white;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+.form button {
+  font-family: "roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: gold;
+  width: 100%;
+  border: 0;
+  padding: 1px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+.form button:hover,
+.form button:active {
+  background: maroon;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: white;
+  font-size: 12px;
+}
+.form .message a {
+  color: gold;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.contact-title {
+  margin-top: 70px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+.contact-title h1 {
+  font-size: 32px;
+  line-height: 15px;
+}
+.contact-title h2 {
+  font-size: 16px;
+  margin-top: 15px;
+}
+.contact-form {
+  margin: 50px;
+  font-family: sans-serif;
+  text-align: center;
+}
+.form-control {
+  width: 600px;
+  background: rgba(128, 0, 0, 0.4);
+  border: 1px solid gold;
+  outline: none;
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+input {
+  height: 45px;
+}
+form .submit {
+  background: gold;
+  border-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  height: 50px;
+  margin-top: 20px;
+}
+form .submit:hover {
+  background-color: maroon;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #fff;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.container {
+  left: 50%;
+  border: solid 1px black;
+  width: 100%;
+  position: fixed;
+}
