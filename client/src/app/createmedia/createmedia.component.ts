@@ -13,9 +13,11 @@ export class CreatemediaComponent implements OnInit {
   confirmation: string;
 
   mediaForm = this.fb.group({
+    title: new FormControl(""),    
     author: new FormControl(""),
     publisher: new FormControl(""),
-    description: new FormControl(""),
+    datepublished: new FormControl(""),
+    comment: new FormControl(""),
     media: new FormControl(null),
     url: new FormControl(null),
     mediaType: new FormControl(""),

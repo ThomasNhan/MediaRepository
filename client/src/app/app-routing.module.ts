@@ -6,6 +6,7 @@ import { ContactComponent } from "./contact/contact.component";
 
 const routes: Routes = [
   { path: "", component: MediaComponent },
+  { path: "repository", component: MediaComponent },
   { path: "create", component: CreatemediaComponent },
 
   { path: "contact", component: ContactComponent }

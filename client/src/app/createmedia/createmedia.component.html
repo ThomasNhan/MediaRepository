@@ -1,6 +1,93 @@
 <h1>Upload Media</h1>
+<main id="main">
+   <!--==========================
+      Upload Section
+    ============================-->
+    <section id="Upload">
+      <div class="container wow fadeInUp">
+        <div class="section-header">
+          <h3 class="section-title">Upload</h3>
+          <p class="section-description">Upload files here all fields required marked with *</p>
+        </div>
+      </div>
 
-<form
+      <div class="container wow fadeInUp mt-5">
+        <div class="row justify-content-center">
+
+          <div class="col-lg-3 col-md-4">
+
+            <div class="info">
+              <div>
+                <p>Title:</p>
+              </div>
+              <div>
+                <p>Author:</p>
+              </div>
+              <div>
+                <p>Publisher:</p>
+              </div>
+              <div>
+                <p>Date Published:</p>
+              </div>
+              <div>
+                <p>File Submission:</p>
+              </div>
+              <div>
+                <p>Comment:</p>
+              </div>
+            </div>
+          </div>
+
+          <!--form file-->
+
+          <div class="col-lg-5 col-md-8">
+            <div class="form">
+              <div id="sendmessage">Your message has been sent. Thank you!</div>
+              <div id="errormessage"></div>
+              <form action="" method="post" role="form" class="contactForm"
+                [formGroup]="mediaForm"
+                (ngSubmit)="submit(mediaForm.value, mediaForm.valid)">
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" id="title" placeholder="title" formControlName="title" />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="author" id="author" placeholder="Author" formControlName="author"/>
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Publisher" formControlName="publisher"/>
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="datepublished" id="datepublished" placeholder="Date Published"  formControlName="datepublished"/>
+                  <div class="validation"></div>
+                </div>                                
+                <div class="form-group">
+                  <input
+                    #fileInput
+                    type="file"
+                    value="Upload Media"
+                    (change)="onFileChange($event)"
+                  />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="comment" rows="5" placeholder="Comment"formControlName="comment"></textarea>
+                  <div class="validation"></div>
+                </div>
+                <div class="text-center"><button type="submit">Upload</button></div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+<!-- <form
   [formGroup]="mediaForm"
   (ngSubmit)="submit(mediaForm.value, mediaForm.valid)"
 >
@@ -32,4 +119,4 @@
   <button type="submit">Submit</button>
   <br /><br />
   <label>{{ confirmation }}</label>
-</form>
+</form> -->

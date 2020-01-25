@@ -1,10 +1,13 @@
 export class Media {
   id: string;
-  media: object;
-  url: string;
+  title: string;
   author: string;
   publisher: string;
-  description: string;
+  datepublished: Date;
+  comment: string;
+  media: object;
+  url: string;
   mediaType: string;
   fileName: string;
+  datesubmitted: Date;
 }
