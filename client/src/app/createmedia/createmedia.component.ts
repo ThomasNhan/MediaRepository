@@ -13,7 +13,7 @@ export class CreatemediaComponent implements OnInit {
   confirmation: string;
 
   mediaForm = this.fb.group({
-    title: new FormControl(""),    
+    title: new FormControl(""),
     author: new FormControl(""),
     publisher: new FormControl(""),
     datepublished: new FormControl(""),
@@ -38,11 +38,7 @@ export class CreatemediaComponent implements OnInit {
           fileName: file.name
         });
       };
-      this.api.uploadMedia(reader.result).subscribe(res => {
-        this.mediaForm.patchValue({
-          url: res
-        });
-      });
+      this.api.uploadMedia(event.target.files);
     }
   }
 

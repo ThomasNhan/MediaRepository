@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Media } from "./media";
+//import { saveAs } from "file-saver";
 
 @Injectable({
   providedIn: "root"
@@ -17,8 +18,7 @@ export class ApiService {
   }
 
   public uploadMedia(file) {
-    console.log('file', file);
-    return this.httpClient.post(`${this.apiURL}/media/upload`, file);
+    //saveAs(file);
   }
 
   public updateMedia(media: Media) {}
