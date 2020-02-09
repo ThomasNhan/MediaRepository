@@ -3,9 +3,10 @@ import { Routes, RouterModule } from "@angular/router";
 import { CreatemediaComponent } from "./createmedia/createmedia.component";
 import { MediaComponent } from "./media/media.component";
 import { ContactComponent } from "./contact/contact.component";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
-  { path: "", component: MediaComponent },
+  { path: "", component: HomeComponent },
   { path: "repository", component: MediaComponent },
   { path: "create", component: CreatemediaComponent },
 

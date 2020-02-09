@@ -1,8 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('multer');
 var MediaModel = require('../models/media');
 var fs = require('fs');
-var AWS = require('aws-sdk');
+
+const DIR = 'public/';
+
+const storage = multer.diskStorage({
+    destination: function (req, res, cb) {
+        cb(null, DIR)
+    },
+    filename: function (req, file, cb) {
+        const fileName = file.originalname.toLowerCase().split(' ').join('-');
+        cb(null, fileName)
+    }
+});
+
+var upload = multer({
+    storage: storage
+});
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -16,14 +32,17 @@ router.get('/', async function (req, res, next) {
 
 });
 
-router.post('/', async function (req, res, next) {
-    console.log(req.body.fileName);
+router.post('/', upload.single('media'), async function (req, res, next) {
+    const url = `${req.protocol}://${req.get('host')}`;
     const media = new MediaModel({
+        title: req.body.title,
         author: req.body.author,
         publisher: req.body.publisher,
         description: req.body.description,
-        fileName: req.body.fileName,
-        mediaType: req.body.mediaType
+        fileName: req.file.filename,
+        mediaType: req.file.mimetype,
+        datesubmitted: Date.now(),
+        url: `${url}/public/${req.file.filename}`
     });
 
     try {
@@ -34,29 +53,15 @@ router.post('/', async function (req, res, next) {
     }
 });
 
-router.post('/upload', async function (req, res, next) {
-    console.log(req);
-    //Create reference for S3 bucket
-    const s3 = new AWS.S3({
-        accessKeyId: 'AKIAJXOE5MHOBVUYYVCA',
-        secretAccessKey: '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'
-    });
-    //Read content from request body
-    //const fileContent = fs.readFileSync(req.body.media);
+router.post('/uploadfile', upload.single('MyMedia'), (req, res, next) => {
+    console.log(req.body);
+    const file = req.body.file
+    if (!file) {
+        const error = new Error('Please upload a file')
+        error.httpStatusCode = 400
+        return next(error)
+    }
+    res.send(file)
 
-    //Setting up S3 upload parameters
-    const params = {
-        Bucket: 'iteach-thomas-n',
-        Key: 'req.body.filename',
-        Body: req.body.media
-    };
-
-    s3.upload(params, function (err, data) {
-        if (err) {
-            throw err;
-        }
-        console.log(`File uploaded successfully, ${data.Location}`);
-    });
-});
-
+})
 module.exports = router;
