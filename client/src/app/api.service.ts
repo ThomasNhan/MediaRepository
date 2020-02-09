@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Media } from "./media";
-//import { saveAs } from "file-saver";
+import { saveAs } from "file-saver";
 
 @Injectable({
   providedIn: "root"
@@ -13,12 +13,14 @@ export class ApiService {
 
   public createMedia(media: Media) {
     console.log(media);
+    var formData: any = new FormData();
+    formData.append("title", media.title);
+    formData.append("author", media.author);
+    formData.append("publisher", media.publisher);
+    formData.append("description", media.comment);
+    formData.append("media", media.media);
 
-    return this.httpClient.post(`${this.apiURL}/media/`, media);
-  }
-
-  public uploadMedia(file) {
-    //saveAs(file);
+    return this.httpClient.post(`${this.apiURL}/media/`, formData);
   }
 
   public updateMedia(media: Media) {}

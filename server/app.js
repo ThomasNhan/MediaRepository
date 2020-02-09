@@ -6,13 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var multer = require('multer');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mediaRouter = require('./routes/media');
 var app = express();
 
 app.use(cors());
-
+app.use(express.static('public'));
+app.use('/public', express.static(path.resolve(__dirname, 'public')));
 // view engine setup
 // remove this code
 //app.set('views', path.join(__dirname, 'views'));

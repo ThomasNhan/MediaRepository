@@ -23,6 +23,18 @@ const mediaSchema = new mongoose.Schema({
     mediaType: {
         type: String,
         required: false
+    },
+    size: {
+        type: Number,
+        required: false
+    },
+    datepublished: {
+        type: Date,
+        required: false
+    },
+    datesubmitted: {
+        type: Date,
+        required: true
     }
 });
 

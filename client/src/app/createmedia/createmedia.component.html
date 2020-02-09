@@ -1,7 +1,11 @@
 <!--==========================
       Upload Section
     ============================-->
-<section id="Upload">
+<section id="hero2">
+  <div class="hero2-container"></div>
+</section>
+<!-- #hero -->
+<section id="Contacts">
   <div class="container wow fadeInUp">
     <div class="section-header">
       <h3 class="section-title">Upload</h3>
@@ -31,7 +35,7 @@
             <p>File Submission:</p>
           </div>
           <div>
-            <p>Comment:</p>
+            <p>Description:</p>
           </div>
         </div>
       </div>
@@ -40,8 +44,6 @@
 
       <div class="col-lg-5 col-md-8">
         <div class="form">
-          <div id="sendmessage">Your message has been sent. Thank you!</div>
-          <div id="errormessage"></div>
           <form
             action=""
             method="post"
@@ -49,13 +51,14 @@
             class="contactForm"
             [formGroup]="mediaForm"
             (ngSubmit)="submit(mediaForm.value, mediaForm.valid)"
+            enctype="multipart/form-data"
           >
             <div class="form-group">
               <input
                 type="text"
                 name="name"
                 class="form-control"
-                id="title"
+                id="Title"
                 placeholder="title"
                 formControlName="title"
               />
@@ -95,9 +98,15 @@
               <div class="validation"></div>
             </div>
             <div class="form-group">
+              <!--<app-file-upload
+                formControlName="media"
+                [progress]="progress"
+              ></app-file-upload>-->
               <input
                 #fileInput
                 type="file"
+                name="MyMedia"
+                id="MyMedia"
                 value="Upload Media"
                 (change)="onFileChange($event)"
               />
@@ -108,7 +117,7 @@
                 class="form-control"
                 name="comment"
                 rows="5"
-                placeholder="Comment"
+                placeholder="Description"
                 formControlName="comment"
               ></textarea>
               <div class="validation"></div>
