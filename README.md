@@ -2,7 +2,7 @@
 
 This application is in two parts.
 
-- client (not yet created)
+- client - This is the user interface using HTML + CSS + Bootstrap + Angular
 - server - This is our api using Nodejs + Express + Mongoose
 
 <p>This application will give the user the ability to upload 
