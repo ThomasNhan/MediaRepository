@@ -24,8 +24,10 @@ var upload = multer({
 router.get('/', async function (req, res, next) {
     //change this code to be json and res.send rather than res.render
     try {
-        var media = await MediaModel.find();
-        res.json(media);
+        var media;
+        media = await MediaModel.find();
+
+        res.json({ success: true, data: media });
     } catch (err) {
         console.log('Error: ', err);
     }
