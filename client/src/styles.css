@@ -1047,66 +1047,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /*--------------------------------------------------------------
-# Table format
---------------------------------------------------------------*/
-table.cinereousTable {
-  border: 6px solid #948473;
-  background-color: #343b40;
-  width: 100%;
-  text-align: center;
-  margin: auto;
-}
-table.cinereousTable td,
-table.cinereousTable th {
-  border: 1px solid #636161;
-  padding: 4px 4px;
-}
-table.cinereousTable tbody td {
-  font-size: 13px;
-}
-table.cinereousTable tr:nth-child(even) {
-  background: #c5c5c4;
-}
-table.cinereousTable thead {
-  background: #948473;
-  background: -moz-linear-gradient(top, #afa396 0%, #9e9081 66%, #948473 100%);
-  background: -webkit-linear-gradient(
-    top,
-    #afa396 0%,
-    #9e9081 66%,
-    #948473 100%
-  );
-  background: linear-gradient(to bottom, #afa396 0%, #9e9081 66%, #948473 100%);
-}
-table.cinereousTable thead th {
-  font-size: 17px;
-  font-weight: bold;
-  color: #f0f0f0;
-  text-align: left;
-  border-left: 2px solid #948473;
-}
-table.cinereousTable thead th:first-child {
-  border-left: none;
-}
-
-table.cinereousTable tfoot {
-  font-size: 16px;
-  font-weight: bold;
-  color: #f0f0f0;
-  background: #948473;
-  background: -moz-linear-gradient(top, #afa396 0%, #9e9081 66%, #948473 100%);
-  background: -webkit-linear-gradient(
-    top,
-    #afa396 0%,
-    #9e9081 66%,
-    #948473 100%
-  );
-  background: linear-gradient(to bottom, #afa396 0%, #9e9081 66%, #948473 100%);
-}
-table.cinereousTable tfoot td {
-  font-size: 16px;
-}
-/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 
@@ -1126,6 +1066,15 @@ table.cinereousTable tfoot td {
   text-align: center;
   font-size: 13px;
   color: #ccc;
+}
+
+.mat-header-row {
+  color: black;
+  background-color: #948473;
+}
+.mat-row:nth-child(even) {
+  color: black;
+  background-color: silver;
 }
 
 @media (min-width: 769px) {
@@ -1192,4 +1141,8 @@ table.cinereousTable tfoot td {
   #about .about-container .title {
     padding-top: 15px;
   }
+}
+
+.mat-focused .placeholder {
+  color: transparent;
 }

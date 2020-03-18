@@ -2,19 +2,51 @@
   <div class="hero2-container"></div>
 </section>
 <!-- #hero -->
-<table class="cinereousTable" width="100%">
-  <th>Author</th>
-  <th>Publisher</th>
-  <th>Media</th>
-  <th>Comment</th>
-  <ng-container *ngFor="let media of mediaList">
-    <tr>
-      <td>{{ media.author }}</td>
-      <td>{{ media.publisher }}</td>
-      <td>
-        <a href="{{ media.url }}">{{ media.fileName }}</a>
-      </td>
-      <td>{{ media.description }}</td>
-    </tr>
-  </ng-container>
-</table>
+<div class="container">
+  <div class="example-header">
+    <mat-form-field>
+      <input
+        matInput
+        #matInput="matInput"
+        (keyup)="applyFilter($event.target.value)"
+      />
+      <mat-placeholder class="placeholder">Filter By...</mat-placeholder>
+    </mat-form-field>
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <!-- Author Column -->
+    <ng-container matColumnDef="Author">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Author</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.author }}</mat-cell>
+    </ng-container>
+    <!-- Publisher Column -->
+    <ng-container matColumnDef="Publisher">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Publisher</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.publisher }}</mat-cell>
+    </ng-container>
+    <!-- Media Column -->
+    <ng-container matColumnDef="Media">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Media</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <a href="{{ row.url }}">{{ row.fileName }}</a></mat-cell
+      >
+    </ng-container>
+    <!-- Comment Column -->
+    <ng-container matColumnDef="Comment">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Comment</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+</div>

@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse
+} from "@angular/common/http";
+import { Observable, of } from "rxjs";
+import { map, catchError, tap } from "rxjs/operators";
 import { Media } from "./media";
 import { saveAs } from "file-saver";
 
@@ -8,10 +14,20 @@ import { saveAs } from "file-saver";
 })
 export class ApiService {
   apiURL: string = "http://localhost:3000";
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json"
+    })
+  };
 
   constructor(private httpClient: HttpClient) {}
 
-  public createMedia(media: Media) {
+  private extractData(res: Response) {
+    let body = res;
+    return body || {};
+  }
+
+  public createMedia(media: Media): Observable<any> {
     console.log(media);
     var formData: any = new FormData();
     formData.append("title", media.title);
@@ -31,7 +47,9 @@ export class ApiService {
     return this.httpClient.get(`${this.apiURL}/media/${id}`);
   }
 
-  public getMedia(url?: string) {
-    return this.httpClient.get<Media[]>(`${this.apiURL}/media`);
+  public getMedia(url?: string): Observable<any> {
+    return this.httpClient
+      .get(`${this.apiURL}/media`)
+      .pipe(map(this.extractData));
   }
 }

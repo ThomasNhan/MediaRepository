@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 
 const mediaSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        require: true,
+        unique: true,
+    },
     url: {
         type: String,
         required: false
@@ -18,7 +23,8 @@ const mediaSchema = new mongoose.Schema({
     },
     fileName: {
         type: String,
-        required: false
+        required: false,
+        unique: true,
     },
     mediaType: {
         type: String,
