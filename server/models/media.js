@@ -14,10 +14,6 @@ const mediaSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    publisher: {
-        type: String,
-        required: true
-    },
     description: {
         type: String
     },
@@ -30,16 +26,16 @@ const mediaSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    size: {
-        type: Number,
-        required: false
-    },
-    datepublished: {
+    datePublished: {
         type: Date,
-        required: false
+        required: true
     },
-    datesubmitted: {
+    dateSubmitted: {
         type: Date,
+        required: true
+    },
+    submittedBy: {
+        type: String,
         required: true
     }
 });

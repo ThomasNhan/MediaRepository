@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var multer = require('multer');
+var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mediaRouter = require('./routes/media');
@@ -15,10 +17,6 @@ var app = express();
 app.use(cors());
 app.use(express.static('public'));
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
-// view engine setup
-// remove this code
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
 
 mongoose.connect('mongodb+srv://jshelly:Angulartutorial@cluster0-gnt6p.mongodb.net/test?retryWrites=true&w=majority', {
   useUnifiedTopology: true,
@@ -38,6 +36,7 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/media', mediaRouter);
+app.use('/login', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

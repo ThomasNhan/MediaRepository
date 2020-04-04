@@ -8,9 +8,11 @@ POST http://localhost:3000/media HTTP/1.1
 Content-Type: application/json
 
 {    
+    "title": "This should be a unique title",
+    "filename": "filename.txt",
     "url": "http://google.com",
-    "author": "Tom Sawyer",
-    "publisher": "Huck Finn",
-    "comment": "This is a comment",
-    "mediaType": "video"    
+    "author": "Tom Sawyer",    
+    "description": "This is a comment",
+    "mediaType": "video",
+    "submittedBy":"Bubba.Schmoe"
 }
