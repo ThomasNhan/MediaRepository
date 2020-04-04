@@ -1,0 +1,42 @@
+###
+
+GET http://localhost:3000/users
+
+###
+
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/json
+
+{    
+    "email": "bubba.schmoe@email.com",
+    "password": "p4ssw0rd!"
+}
+###
+
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/json
+
+{    
+    "email": "bubba.schmoe@email.com",
+    "password": "wrongP4ssw0rd!"
+}
+
+###
+
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/json
+
+{    
+    "email": "fake.user@email.com",
+    "password": "p4ssw0rd!"
+}
+
+###
+
+POST http://localhost:3000/register HTTP/1.1
+Content-Type: application/json
+
+{    
+    "email": "bubba.schmoe@email.com",
+    "password": "p4ssw0rd!"
+}

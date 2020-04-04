@@ -1,3 +1,5 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 body {
   background: #fff;
   color: #666666;
@@ -1145,4 +1147,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .mat-focused .placeholder {
   color: transparent;
+}
+
+.fileUpload ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.full-width-field {
+  width: 100%;
 }

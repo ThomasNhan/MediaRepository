@@ -17,7 +17,9 @@
 
   <div class="container wow fadeInUp mt-5">
     <div class="row justify-content-center">
+      <!--
       <div class="col-lg-3 col-md-4">
+
         <div class="info">
           <div>
             <p>Title:</p>
@@ -39,88 +41,116 @@
           </div>
         </div>
       </div>
-
+    -->
       <!--form file-->
 
-      <div class="col-lg-5 col-md-8">
+      <div class="col-sm-8" style="border: solid 1px black;">
         <div class="form">
           <form
+            #form
+            id="media"
             action=""
             method="post"
             role="form"
-            class="contactForm"
+            class="uploadForm"
             [formGroup]="mediaForm"
+            novalidate
             (ngSubmit)="submit(mediaForm.value, mediaForm.valid)"
             enctype="multipart/form-data"
           >
             <div class="form-group">
-              <input
-                type="text"
-                name="name"
-                class="form-control"
-                id="Title"
-                placeholder="title"
-                formControlName="title"
-              />
-              <div class="validation"></div>
+              <mat-form-field class="full-width-field">
+                <mat-label>Title</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  name="title"
+                  id="title"
+                  class="form-control"
+                  id="Title"
+                  placeholder="Title"
+                  formControlName="title"
+                  required
+                />
+                <mat-error *ngIf="hasError('title', 'required')"
+                  >Title is required</mat-error
+                >
+              </mat-form-field>
             </div>
             <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                name="author"
-                id="author"
-                placeholder="Author"
-                formControlName="author"
-              />
-              <div class="validation"></div>
+              <mat-form-field class="full-width-field">
+                <mat-label>Author</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  class="form-control"
+                  name="author"
+                  id="author"
+                  placeholder="Author"
+                  formControlName="author"
+                  required
+                />
+                <mat-error *ngIf="hasError('author', 'required')"
+                  >Author is required</mat-error
+                >
+              </mat-form-field>
             </div>
             <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                name="publisher"
-                id="publisher"
-                placeholder="Publisher"
-                formControlName="publisher"
-              />
-              <div class="validation"></div>
+              <mat-form-field class="full-width-field">
+                <mat-label>Date Published</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  type="text"
+                  class="form-control"
+                  name="datePublished"
+                  id="datePublished"
+                  placeholder="Date Published"
+                  formControlName="datePublished"
+                  (focus)="picker.open()"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="hasError('datePublished', 'required')"
+                  >Date Published is required</mat-error
+                >
+              </mat-form-field>
             </div>
             <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                name="datepublished"
-                id="datepublished"
-                placeholder="Date Published"
-                formControlName="datepublished"
-              />
-              <div class="validation"></div>
+              <div style="text-align:center; margin-top: 20px; ">
+                <div class="progress form-group" *ngIf="progress > 0">
+                  <div
+                    class="progress-bar progress-bar-striped bg-success"
+                    role="progressbar"
+                    [style.width.%]="progress"
+                  ></div>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    id="uploadFile"
+                    name="uploadFile"
+                    type="file"
+                    (change)="uploadFile($event)"
+                  />
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <!--<app-file-upload
-                formControlName="media"
-                [progress]="progress"
-              ></app-file-upload>-->
-              <input
-                #fileInput
-                type="file"
-                name="MyMedia"
-                id="MyMedia"
-                value="Upload Media"
-                (change)="onFileChange($event)"
-              />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <textarea
-                class="form-control"
-                name="comment"
-                rows="5"
-                placeholder="Description"
-                formControlName="comment"
-              ></textarea>
-              <div class="validation"></div>
+              <mat-form-field class="full-width-field">
+                <textarea
+                  matInput
+                  class="form-control"
+                  name="description"
+                  rows="5"
+                  placeholder="Description"
+                  formControlName="description"
+                ></textarea>
+              </mat-form-field>
             </div>
             <div class="text-center"><button type="submit">Upload</button></div>
           </form>

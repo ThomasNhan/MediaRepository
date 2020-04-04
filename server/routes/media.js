@@ -35,15 +35,32 @@ router.get('/', async function (req, res, next) {
 });
 
 router.post('/', upload.single('media'), async function (req, res, next) {
+
+    //Check to see if the media title already exists
+    MediaModel.findOne({ 'title': req.body.title }, (err, m) => {
+        if (m) {
+            res.status(400).json({ message: 'Title already exists' })
+        }
+    });
+
+    //Check to see if the media title already exists
+    MediaModel.findOne({ 'fileName': req.file.filename }, (err, f) => {
+        if (f) {
+            res.status(400).json({ message: 'Filename already exists' })
+        }
+    })
+
     const url = `${req.protocol}://${req.get('host')}`;
+
     const media = new MediaModel({
         title: req.body.title,
         author: req.body.author,
-        publisher: req.body.publisher,
         description: req.body.description,
+        datePublished: req.body.datePublished,
+        submittedBy: req.body.submittedBy,
         fileName: req.file.filename,
         mediaType: req.file.mimetype,
-        datesubmitted: Date.now(),
+        dateSubmitted: Date.now(),
         url: `${url}/public/${req.file.filename}`
     });
 
@@ -51,6 +68,7 @@ router.post('/', upload.single('media'), async function (req, res, next) {
         const newMedia = await media.save();
         res.status(201).json(newMedia);
     } catch (err) {
+        console.log(err);
         res.status(400).json({ message: err.message });
     }
 });

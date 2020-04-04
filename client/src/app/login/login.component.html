@@ -1,0 +1,43 @@
+<section id="hero2">
+  <div class="hero2-container"></div>
+</section>
+<!--==========================
+      Team Section
+    ============================-->
+<section id="Contacts">
+  <div class="container wow fadeInUp">
+    <div class="section-header">
+      <h3 class="section-title">Log In</h3>
+      <div>
+        <form
+          action=""
+          method="post"
+          role="form"
+          class="contactForm"
+          [formGroup]="loginForm"
+          (ngSubmit)="login(loginForm.value, loginForm.valid)"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
+            placeholder="Email Address"
+            formControlName="username"
+          />
+          <input
+            type="text"
+            class="form-control"
+            name="password"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <button mat-button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #team -->

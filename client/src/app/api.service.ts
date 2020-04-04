@@ -7,6 +7,7 @@ import {
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
 import { Media } from "./media";
+import { ILogin } from "./login/ILogin";
 import { saveAs } from "file-saver";
 
 @Injectable({
@@ -32,11 +33,15 @@ export class ApiService {
     var formData: any = new FormData();
     formData.append("title", media.title);
     formData.append("author", media.author);
-    formData.append("publisher", media.publisher);
-    formData.append("description", media.comment);
+    formData.append("description", media.description);
+    formData.append("datePublished", media.datePublished);
+    formData.append("submittedBy", "AppUser");
     formData.append("media", media.media);
 
-    return this.httpClient.post(`${this.apiURL}/media/`, formData);
+    return this.httpClient.post(`${this.apiURL}/media/`, formData, {
+      reportProgress: true,
+      observe: "events"
+    });
   }
 
   public updateMedia(media: Media) {}
@@ -51,5 +56,14 @@ export class ApiService {
     return this.httpClient
       .get(`${this.apiURL}/media`)
       .pipe(map(this.extractData));
+  }
+
+  public login(loginInfo: ILogin) {
+    var formData: any = new FormData();
+    formData.append("email", loginInfo.email);
+    formData.append("password", loginInfo.password);
+    console.log(formData);
+
+    return this.httpClient.post(`${this.apiURL}/login`, formData);
   }
 }

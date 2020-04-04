@@ -9,14 +9,22 @@ import { CreatemediaComponent } from "./createmedia/createmedia.component";
 import { ContactComponent } from "./contact/contact.component";
 import { HomeComponent } from "./home/home.component";
 import { FileUploadModule } from "ng2-file-upload";
-import { FileUploadComponent } from "./file-upload/file-upload.component";
 import { ProgressComponent } from "./progress/progress.component";
 import { DragDropDirective } from "./drag-drop.directive";
+import { MatNativeDateModule } from "@angular/material/core";
 import { MatInputModule } from "@angular/material/input";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
+
+import { MatButtonModule } from "@angular/material/button";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LoginComponent } from "./login/login.component";
 
 @NgModule({
   declarations: [
@@ -25,9 +33,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     CreatemediaComponent,
     ContactComponent,
     HomeComponent,
-    FileUploadComponent,
     ProgressComponent,
-    DragDropDirective
+    DragDropDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +47,13 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatProgressBarModule,
     BrowserAnimationsModule
   ],
   providers: [],
