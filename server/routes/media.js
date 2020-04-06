@@ -25,7 +25,7 @@ router.get('/', async function (req, res, next) {
     //change this code to be json and res.send rather than res.render
     try {
         var media;
-        media = await MediaModel.find();
+        media = await MediaModel.find().sort({ "dateSubmitted": "desc" });
 
         res.json({ success: true, data: media });
     } catch (err) {

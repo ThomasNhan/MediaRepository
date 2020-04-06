@@ -11,14 +11,21 @@ import { Media } from "../media";
 @Component({
   selector: "app-media",
   templateUrl: "./media.component.html",
-  styleUrls: ["./media.component.css"]
+  styleUrls: ["./media.component.css"],
 })
 export class MediaComponent implements OnInit, AfterViewInit {
   mediaList: Media[];
   resultCount: number;
   searchString: string;
   dataSource: MatTableDataSource<any[]>;
-  displayedColumns = ["Author", "Publisher", "Media", "Comment"];
+  displayedColumns = [
+    "Title",
+    "Author",
+    "Media",
+    "Description",
+    "UploadDate",
+    "PublicationDate",
+  ];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -33,10 +40,10 @@ export class MediaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.api.getMedia().subscribe(
-      res => {
+      (res) => {
         this.dataSource = new MatTableDataSource(res.data);
       },
-      err => console.log(err),
+      (err) => console.log(err),
       () => {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

@@ -15,15 +15,15 @@
   </div>
 
   <mat-table [dataSource]="dataSource">
+    <!-- Title Column -->
+    <ng-container matColumnDef="Title">
+      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+    </ng-container>
     <!-- Author Column -->
     <ng-container matColumnDef="Author">
       <mat-header-cell *matHeaderCellDef>Author</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.author }}</mat-cell>
-    </ng-container>
-    <!-- Publisher Column -->
-    <ng-container matColumnDef="Publisher">
-      <mat-header-cell *matHeaderCellDef>Publisher</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.publisher }}</mat-cell>
     </ng-container>
     <!-- Media Column -->
     <ng-container matColumnDef="Media">
@@ -32,12 +32,25 @@
         <a href="{{ row.url }}">{{ row.fileName }}</a></mat-cell
       >
     </ng-container>
-    <!-- Comment Column -->
-    <ng-container matColumnDef="Comment">
-      <mat-header-cell *matHeaderCellDef>Comment</mat-header-cell>
+    <!-- Description Column -->
+    <ng-container matColumnDef="Description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
     </ng-container>
-
+    <!-- Upload Date Column -->
+    <ng-container matColumnDef="UploadDate">
+      <mat-header-cell *matHeaderCellDef>Upload Date</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{
+        row.dateSubmitted | date: "MM/dd/yyyy"
+      }}</mat-cell>
+    </ng-container>
+    <!-- Published Date Column -->
+    <ng-container matColumnDef="PublicationDate">
+      <mat-header-cell *matHeaderCellDef>Publication Date</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{
+        row.datePublished | date: "MM/dd/yyyy"
+      }}</mat-cell>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>

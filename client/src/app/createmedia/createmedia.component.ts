@@ -44,7 +44,7 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
     datePublished: new FormControl("", Validators.required),
     description: new FormControl(""),
     submittedBy: new FormControl(""),
-    media: new FormControl(null),
+    media: new FormControl(null, Validators.required),
     url: new FormControl(null),
     mediaType: new FormControl(""),
     fileName: new FormControl(""),
@@ -117,9 +117,15 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
           }
         );
     } else {
-      this.snackBar.open("Required Fields are missing", "Failed", {
-        duration: 2000,
-      });
+      if (!this.selectedFile) {
+        this.snackBar.open("Please select a file to upload", "Failed", {
+          duration: 2000,
+        });
+      } else {
+        this.snackBar.open("Required Fields are missing", "Failed", {
+          duration: 2000,
+        });
+      }
     }
   }
 }
