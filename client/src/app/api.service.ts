@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpHeaders,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
@@ -11,14 +11,14 @@ import { ILogin } from "./login/ILogin";
 import { saveAs } from "file-saver";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ApiService {
-  apiURL: string = "http://localhost:3000";
+  apiURL: string = "http://localhost:3333";
   httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json"
-    })
+      "Content-Type": "application/json",
+    }),
   };
 
   constructor(private httpClient: HttpClient) {}
@@ -28,7 +28,7 @@ export class ApiService {
     return body || {};
   }
 
-  public createMedia(media: Media): Observable<any> {
+  public createMedia(media: Media) {
     console.log(media);
     var formData: any = new FormData();
     formData.append("title", media.title);
@@ -40,7 +40,7 @@ export class ApiService {
 
     return this.httpClient.post(`${this.apiURL}/media/`, formData, {
       reportProgress: true,
-      observe: "events"
+      observe: "events",
     });
   }
 

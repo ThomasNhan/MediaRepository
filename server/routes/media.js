@@ -36,40 +36,59 @@ router.get('/', async function (req, res, next) {
 
 router.post('/', upload.single('media'), async function (req, res, next) {
 
+    var sent = false;
     //Check to see if the media title already exists
-    MediaModel.findOne({ 'title': req.body.title }, (err, m) => {
-        if (m) {
-            res.status(400).json({ message: 'Title already exists' })
-        }
-    });
+    try {
+        await MediaModel.findOne({ 'title': req.body.title }, (err, m) => {
+            if (m) {
+                sent = true;
+                res.status(400).json({ message: 'Title already exists' });
+                res.end();
+                return;
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
 
-    //Check to see if the media title already exists
-    MediaModel.findOne({ 'fileName': req.file.filename }, (err, f) => {
-        if (f) {
-            res.status(400).json({ message: 'Filename already exists' })
+    if (!sent) {
+        try {
+            //Check to see if the media title already exists
+            await MediaModel.findOne({ 'fileName': req.file.filename }, (err, f) => {
+                if (f) {
+                    sent = true;
+                    return res.status(400).json({ message: 'Filename already exists' })
+                }
+            })
+        } catch (e) {
+            console.log(e);
         }
-    })
+    }
 
     const url = `${req.protocol}://${req.get('host')}`;
 
-    const media = new MediaModel({
-        title: req.body.title,
-        author: req.body.author,
-        description: req.body.description,
-        datePublished: req.body.datePublished,
-        submittedBy: req.body.submittedBy,
-        fileName: req.file.filename,
-        mediaType: req.file.mimetype,
-        dateSubmitted: Date.now(),
-        url: `${url}/public/${req.file.filename}`
-    });
+    if (!sent) {
+        const media = new MediaModel({
+            title: req.body.title,
+            author: req.body.author,
+            description: req.body.description,
+            datePublished: req.body.datePublished,
+            submittedBy: req.body.submittedBy,
+            fileName: req.file.filename,
+            mediaType: req.file.mimetype,
+            dateSubmitted: Date.now(),
+            url: `${url}/public/${req.file.filename}`
+        });
 
-    try {
-        const newMedia = await media.save();
-        res.status(201).json(newMedia);
-    } catch (err) {
-        console.log(err);
-        res.status(400).json({ message: err.message });
+        try {
+            const newMedia = await media.save();
+            return res.status(201).json(newMedia);
+            res.end();
+
+        } catch (err) {
+            console.log(err);
+            //return res.status(400).json({ message: err.message });
+        }
     }
 });
 
