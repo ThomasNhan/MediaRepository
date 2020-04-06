@@ -9,10 +9,9 @@ Content-Type: application/json
 
 {    
     "title": "This should be a unique title",
-    "filename": "filename.txt",
     "url": "http://google.com",
     "author": "Tom Sawyer",    
     "description": "This is a comment",
     "mediaType": "video",
-    "submittedBy":"Bubba.Schmoe"
+    "dateSubmitted": "04/05/2020"
 }
