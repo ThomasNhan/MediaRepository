@@ -112,18 +112,18 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
           (error) => {
             console.log("Subscribe error", error.error.message);
             this.snackBar.open(error.error.message, "Failed", {
-              duration: 2000,
+              duration: 3000,
             });
           }
         );
     } else {
       if (!this.selectedFile) {
         this.snackBar.open("Please select a file to upload", "Failed", {
-          duration: 2000,
+          duration: 3000,
         });
       } else {
         this.snackBar.open("Required Fields are missing", "Failed", {
-          duration: 2000,
+          duration: 3000,
         });
       }
     }
