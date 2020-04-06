@@ -1,21 +1,15 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  ErrorHandler
-} from "@angular/core";
+import { Component, OnInit, ViewChild, ErrorHandler } from "@angular/core";
 import {
   HttpEventType,
   HttpErrorResponse,
-  HttpEvent
+  HttpEvent,
 } from "@angular/common/http";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {
   FormBuilder,
   FormControl,
   Validators,
-  FormGroupDirective
+  FormGroupDirective,
 } from "@angular/forms";
 import { of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -27,7 +21,7 @@ import { HttpClient } from "@angular/common/http";
 @Component({
   selector: "app-createmedia",
   templateUrl: "./createmedia.component.html",
-  styleUrls: ["./createmedia.component.css"]
+  styleUrls: ["./createmedia.component.css"],
 })
 export class CreatemediaComponent implements OnInit, ErrorHandler {
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
@@ -53,7 +47,7 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
     media: new FormControl(null),
     url: new FormControl(null),
     mediaType: new FormControl(""),
-    fileName: new FormControl("")
+    fileName: new FormControl(""),
   });
 
   ngOnInit() {}
@@ -68,17 +62,13 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
     this.mediaForm.patchValue({
       media: file,
       mediaType: file.type,
-      fileName: file.name
+      fileName: file.name,
     });
     this.mediaForm.get("media").updateValueAndValidity();
   }
 
   handleError(error: HttpErrorResponse) {
     console.log("Error Message", error.error.message);
-
-    // this.snackBar.open(error.error.message, "Failed", {
-    //   duration: 2000
-    // });
     return throwError(error);
   }
 
@@ -91,6 +81,7 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
         .pipe(catchError(this.handleError))
         .subscribe(
           (event: HttpEvent<any>) => {
+            console.log("Event Type:", event.type);
             switch (event.type) {
               case HttpEventType.Sent:
                 console.log("Request has been made");
@@ -105,7 +96,7 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
               case HttpEventType.Response:
                 console.log("Media successfully uploaded", event.body);
                 this.snackBar.open("Medis successfully uploaded", "Success", {
-                  duration: 2000
+                  duration: 2000,
                 });
                 this.form.nativeElement.reset();
                 this.formDirective.resetForm();
@@ -118,16 +109,16 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
                 }, 1500);
             }
           },
-          error => {
+          (error) => {
             console.log("Subscribe error", error.error.message);
             this.snackBar.open(error.error.message, "Failed", {
-              duration: 2000
+              duration: 2000,
             });
           }
         );
     } else {
       this.snackBar.open("Required Fields are missing", "Failed", {
-        duration: 2000
+        duration: 2000,
       });
     }
   }
