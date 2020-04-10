@@ -42,7 +42,7 @@ router.post('/', upload.single('media'), async function (req, res, next) {
         await MediaModel.findOne({ 'title': req.body.title }, (err, m) => {
             if (m) {
                 sent = true;
-                res.status(400).json({ message: 'Title already exists' });
+                res.status(400).json({ message: 'Title already exists, please select a different title.' });
                 res.end();
                 return;
             }
@@ -57,7 +57,7 @@ router.post('/', upload.single('media'), async function (req, res, next) {
             await MediaModel.findOne({ 'fileName': req.file.filename }, (err, f) => {
                 if (f) {
                     sent = true;
-                    return res.status(400).json({ message: 'Filename already exists' })
+                    return res.status(400).json({ message: 'Filename already exists, please select a different file or rename the file.' })
                 }
             })
         } catch (e) {
