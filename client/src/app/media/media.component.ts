@@ -4,7 +4,8 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormField } from "@angular/material/form-field";
-
+import { LoginService } from "../api.login.service";
+import { Router } from "@angular/router";
 import { ApiService } from "../api.service";
 import { Media } from "../media";
 
@@ -25,18 +26,27 @@ export class MediaComponent implements OnInit, AfterViewInit {
     "Description",
     "UploadDate",
     "PublicationDate",
+    "SubmittedBy",
   ];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private api: ApiService) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private auth: LoginService
+  ) {}
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
     console.log(this.dataSource.filter);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.auth.isLoggedOut()) {
+      this.router.navigateByUrl("/login");
+    }
+  }
 
   ngAfterViewInit(): void {
     this.api.getMedia().subscribe(

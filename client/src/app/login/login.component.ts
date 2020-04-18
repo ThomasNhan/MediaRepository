@@ -1,28 +1,35 @@
 import { Component, OnInit } from "@angular/core";
 import { MatFormField } from "@angular/material/form-field";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { ApiService } from "../api.service";
-import { ILogin } from "./ILogin";
+import { LoginService } from "../api.login.service";
+import { Login } from "../models/Login";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder, private api: ApiService) {}
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private api: LoginService
+  ) {}
 
   loginForm = this.fb.group({
-    username: new FormControl("", Validators.required),
-    password: new FormControl("", Validators.required)
+    email: new FormControl("", Validators.required),
+    password: new FormControl("", Validators.required),
   });
 
-  login(loginInfo: ILogin, isValid: boolean) {
-    console.log(loginInfo);
+  login(loginInfo: Login, isValid: boolean) {
+    console.log("Login info from component", loginInfo);
     if (this.loginForm.valid) {
-      this.api.login(loginInfo).subscribe(res => {
+      this.api.login(loginInfo).subscribe((res) => {
         const val = res;
-        console.log(val);
+        this.snackBar.open("Login Successful", "Failed", {
+          duration: 2000,
+        });
       });
     } else {
       console.log("Required fields are missing");

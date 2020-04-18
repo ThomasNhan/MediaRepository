@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/media', mediaRouter);
-app.use('/login', usersRouter);
+//app.use('/login', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

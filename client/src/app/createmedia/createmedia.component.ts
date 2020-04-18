@@ -17,6 +17,8 @@ import { throwError } from "rxjs";
 import { ApiService } from "../api.service";
 import { Media } from "../media";
 import { HttpClient } from "@angular/common/http";
+import { LoginService } from "../api.login.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-createmedia",
@@ -33,8 +35,10 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
+    private auth: LoginService,
     private http: HttpClient,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
   confirmation: string;
 
@@ -50,7 +54,11 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
     fileName: new FormControl(""),
   });
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.auth.isLoggedOut()) {
+      this.router.navigateByUrl("/login");
+    }
+  }
 
   public hasError = (controlName: string, errorName: string) => {
     return this.mediaForm.controls[controlName].hasError(errorName);
@@ -75,13 +83,14 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
   submit(media: Media, isValid: boolean) {
     if (this.mediaForm.valid) {
       this.mediaForm.value.media = this.selectedFile;
+      console.log("auth email", this.auth.getAuthEmail());
+      this.mediaForm.value.submittedBy = this.auth.getAuthEmail();
       media.media = this.selectedFile;
       this.api
         .createMedia(media)
         .pipe(catchError(this.handleError))
         .subscribe(
           (event: HttpEvent<any>) => {
-            console.log("Event Type:", event.type);
             switch (event.type) {
               case HttpEventType.Sent:
                 console.log("Request has been made");
