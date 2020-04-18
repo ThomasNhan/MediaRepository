@@ -23,6 +23,8 @@
     "@angular/router": "^9.0.5",
     "file-saver": "^2.0.2",
     "jw-angular-pagination": "^1.1.0",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
     "ng2-file-upload": "^1.4.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.11.1",

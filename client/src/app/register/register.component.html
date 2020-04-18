@@ -1,0 +1,79 @@
+<!--==========================
+      Upload Section
+    ============================-->
+<section id="hero2">
+  <div class="hero2-container"></div>
+</section>
+<!-- #hero -->
+<section id="Contacts">
+  <div class="container wow fadeInUp">
+    <div class="section-header">
+      <h3 class="section-title">Registration</h3>
+      <p class="section-description">
+        Register a new user *
+      </p>
+    </div>
+  </div>
+
+  <div class="container wow fadeInUp mt-5">
+    <div class="row justify-content-center">
+      <div class="col-sm-8" style="border: solid 1px black;">
+        <div class="form">
+          <form
+            #form
+            id="registerUser"
+            action=""
+            method="post"
+            role="form"
+            class="uploadForm"
+            [formGroup]="userForm"
+            novalidate
+            (ngSubmit)="submit(userForm.value, userForm.valid)"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <mat-form-field class="full-width-field">
+                <mat-label>Email Address</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Email Address"
+                  formControlName="email"
+                  required
+                />
+                <mat-error *ngIf="hasError('email', 'required')"
+                  >Email Address is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <mat-form-field class="full-width-field">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  formControlName="password"
+                  required
+                />
+                <mat-error *ngIf="hasError('password', 'required')"
+                  >Password is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="text-center">
+              <button type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

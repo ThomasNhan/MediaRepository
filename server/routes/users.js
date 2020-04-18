@@ -21,39 +21,40 @@ router.get('/', async function (req, res, next) {
 });
 
 router.post('/register', async function (req, res, next) {
-  console.log(req.body);
-
+  var sent = false;
   //Check to see if the user is already registerd.
   UserModel.findOne({ 'email': req.body.email }, (err, user) => {
     if (user) {
-      res.status(400).send({ message: 'User already exists' })
+      sent = true;
+      return res.status(400).json({ message: 'User already exists' });
+    } else {
+      //Encrypt the password before saving to the database.
+      let encryptedPassword = bcrypt.genSalt(SALT, function (err, salt) {
+        if (err) return next(err);
+        bcrypt.hash(req.body.password, salt, function (err, hash) {
+          if (err) return next(err);
+          encryptedPassword = hash;
+
+          const user = new UserModel({
+            email: req.body.email,
+            password: encryptedPassword,
+          });
+
+          try {
+            const newUser = user.save();
+            return res.status(201).json(newUser);
+          } catch (err) {
+            console.log(err);
+          }
+        });
+      });
     }
   })
 
-  //Encrypt the password before saving to the database.
-  let encryptedPassword = bcrypt.genSalt(SALT, function (err, salt) {
-    if (err) return next(err);
-    bcrypt.hash(req.body.password, salt, function (err, hash) {
-      if (err) return next(err);
-      encryptedPassword = hash;
 
-      const user = new UserModel({
-        email: req.body.email,
-        password: encryptedPassword,
-      });
-
-      try {
-        const newUser = user.save();
-        res.status(201).json(newUser);
-      } catch (err) {
-        res.status(400).json({ message: err.message });
-      }
-    });
-  });
 });
 
-router.post('/', async (req, res, next) => {
-  console.log(req.body);
+router.post('/login', async function (req, res, next) {
   //Check to see if the email exists in the database. 
   var user = await UserModel.findOne({ 'email': req.body.email }).exec();
   if (!user) {
@@ -64,7 +65,8 @@ router.post('/', async (req, res, next) => {
   }
 
   const secret = 'mY!littl3@53cR3T';
-  const token = jwt.sign({ sub: user.id }, secret);
+  const token = jwt.sign({ subject: user.email, expiresIn: 120 }, secret);
+
   res.status(200).send({ loginToken: token });
 });
 
