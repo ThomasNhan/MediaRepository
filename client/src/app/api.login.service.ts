@@ -53,7 +53,7 @@ export class LoginService {
   }
 
   private setSession(authResult) {
-    const decodedValue = jwt_decode(authResult.loginToken);
+    const decodedValue = jwt_decode(authResult.body.loginToken);
     const expiresAt = moment().add(decodedValue.expiresIn, "second");
     const email = decodedValue.subject;
 

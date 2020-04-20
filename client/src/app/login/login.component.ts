@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.api.login(loginInfo).subscribe((res) => {
         const val = res;
-        this.snackBar.open("Login Successful", "Failed", {
+        this.snackBar.open("Login Successful", "Success", {
           duration: 2000,
         });
       });
