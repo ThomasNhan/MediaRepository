@@ -42,11 +42,7 @@ export class MediaComponent implements OnInit, AfterViewInit {
     console.log(this.dataSource.filter);
   }
 
-  ngOnInit() {
-    if (this.auth.isLoggedOut()) {
-      this.router.navigateByUrl("/login");
-    }
-  }
+  ngOnInit() { }
 
   ngAfterViewInit(): void {
     this.api.getMedia().subscribe(

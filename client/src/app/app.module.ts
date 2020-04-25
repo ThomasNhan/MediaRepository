@@ -26,6 +26,8 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './helpers/authguard';
+import { LoginService } from './api.login.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,7 @@ import { RegisterComponent } from './register/register.component';
     MatProgressBarModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

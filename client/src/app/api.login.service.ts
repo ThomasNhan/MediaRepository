@@ -32,11 +32,9 @@ export class LoginService {
 
     return this.httpClient
       .post(`${this.apiURL}/login`, json, this.httpOptions)
-      .pipe(
-        map((res) => {
+      .pipe(tap(res => {
           this.setSession(res);
-        })
-      );
+      }));
   }
 
   public register(userInfo: Login) {
@@ -52,7 +50,7 @@ export class LoginService {
     );
   }
 
-  private setSession(authResult) {
+  public setSession(authResult) {
     const decodedValue = jwt_decode(authResult.body.loginToken);
     const expiresAt = moment().add(decodedValue.expiresIn, "second");
     const email = decodedValue.subject;

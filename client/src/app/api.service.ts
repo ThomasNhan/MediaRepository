@@ -7,7 +7,6 @@ import {
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
 import { Media } from "./media";
-import { saveAs } from "file-saver";
 
 @Injectable({
   providedIn: "root",
@@ -55,6 +54,6 @@ export class ApiService {
   public getMedia(url?: string): Observable<any> {
     return this.httpClient
       .get(`${this.apiURL}/media`)
-      .pipe(map(this.extractData));
+      .pipe(tap(this.extractData));
   }
 }

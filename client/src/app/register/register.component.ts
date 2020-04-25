@@ -11,8 +11,7 @@ import {
   HttpErrorResponse,
   HttpEvent,
 } from "@angular/common/http";
-import { of } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { LoginService } from "../api.login.service";
 import { Login } from "../models/Login";
@@ -47,8 +46,7 @@ export class RegisterComponent implements OnInit {
 
   submit(user: Login, isValid: boolean) {
     if (this.userForm.valid) {
-      this.api
-        .register(user)
+      this.api.register(user)
         .pipe(catchError(this.handleError))
         .subscribe(
           (event: HttpEvent<any>) => {
@@ -62,7 +60,6 @@ export class RegisterComponent implements OnInit {
               case HttpEventType.UploadProgress:
                 break;
               case HttpEventType.Response:
-                console.log("Media successfully uploaded", event.body);
                 this.snackBar.open("User successfully registered", "Success", {
                   duration: 2000,
                 });
