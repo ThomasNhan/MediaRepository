@@ -54,11 +54,7 @@ export class CreatemediaComponent implements OnInit, ErrorHandler {
     fileName: new FormControl(""),
   });
 
-  ngOnInit() {
-    if (this.auth.isLoggedOut()) {
-      this.router.navigateByUrl("/login");
-    }
-  }
+  ngOnInit() {}
 
   public hasError = (controlName: string, errorName: string) => {
     return this.mediaForm.controls[controlName].hasError(errorName);
