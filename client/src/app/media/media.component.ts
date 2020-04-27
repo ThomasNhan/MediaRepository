@@ -7,7 +7,7 @@ import { MatFormField } from "@angular/material/form-field";
 import { LoginService } from "../api.login.service";
 import { Router } from "@angular/router";
 import { ApiService } from "../api.service";
-import { Media } from "../media";
+import { Media } from "../models/media";
 
 @Component({
   selector: "app-media",

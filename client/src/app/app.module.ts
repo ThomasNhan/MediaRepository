@@ -10,7 +10,6 @@ import { ContactComponent } from "./contact/contact.component";
 import { HomeComponent } from "./home/home.component";
 import { FileUploadModule } from "ng2-file-upload";
 import { ProgressComponent } from "./progress/progress.component";
-import { DragDropDirective } from "./drag-drop.directive";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatInputModule } from "@angular/material/input";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
@@ -37,7 +36,6 @@ import { LoginService } from './api.login.service';
     ContactComponent,
     HomeComponent,
     ProgressComponent,
-    DragDropDirective,
     LoginComponent,
     RegisterComponent
   ],
