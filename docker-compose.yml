@@ -1,0 +1,27 @@
+version: '3.7' # specify docker-compose version
+
+# Define the services/containers to run
+services:
+    client: #name of the front-end app
+        build: client # specify the directory of the client Dockerfile       
+        ports:
+            - "80:80"
+    server: #name of the server api
+        build: server #specify the directory of the server Dockerfile 
+        environment:
+            - MONGO_CONNECTIONSTRING=mongodb://database/mediarepository       
+        links:
+            - database # link the api to the database service
+        depends_on: 
+            - database
+        volumes:
+            - "/uploads:/usr/src/app/public"
+        ports:
+            - "3333:3333"
+    database:
+        image: mongo #name of the database service
+        container_name: "media"        
+        volumes:
+            - /data/db:/data/db
+        ports:
+            - "27017:27017" # specify port forwarding

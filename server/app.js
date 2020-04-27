@@ -14,11 +14,16 @@ var usersRouter = require('./routes/users');
 var mediaRouter = require('./routes/media');
 var app = express();
 
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();  
+}
+
 app.use(cors());
 app.use(express.static('public'));
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
-mongoose.connect('mongodb+srv://jshelly:Angulartutorial@cluster0-gnt6p.mongodb.net/test?retryWrites=true&w=majority', {
+console.log(process.env.MONGO_CONNECTIONSTRING);
+mongoose.connect(process.env.MONGO_CONNECTIONSTRING, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 })
