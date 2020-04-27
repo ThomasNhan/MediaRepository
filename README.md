@@ -7,7 +7,7 @@ This is a MEAN stack application
 - NodeJs as the platform that the API runs on.
 
 The application is in 4 parts.
-- client - Angular,built using angular/cli
+- client - This is the user interface using HTML + CSS + Bootstrap + Angular
 - server - This is our api using Nodejs + Express + Mongoose
 - database - a NoSQL database 
 - Docker - All  parts are containerized and work together.
