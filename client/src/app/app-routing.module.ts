@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: "create", component: CreatemediaComponent, canActivate: [AuthGuard] },
   { path: "contacts", component: ContactComponent },
   { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: "register", component: RegisterComponent },
   { path: '**', redirectTo: '' }
 ];
 

@@ -6,7 +6,7 @@ import {
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
-import { Media } from "./media";
+import { Media } from "./models/media";
 
 @Injectable({
   providedIn: "root",

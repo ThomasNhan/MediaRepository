@@ -15,7 +15,7 @@ import { of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { ApiService } from "../api.service";
-import { Media } from "../media";
+import { Media } from "../models/media";
 import { HttpClient } from "@angular/common/http";
 import { LoginService } from "../api.login.service";
 import { Router } from "@angular/router";
